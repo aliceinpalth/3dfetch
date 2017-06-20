@@ -203,7 +203,7 @@ day_value_string = getDayString(day_value)
 month_string = getMonthString(month)
 date_string = day_value_string .. " " .. month_string .. " " .. day .. ", " .. year
 
--- CPU Frquency
+-- CPU Frequency
 freq = System.getCpuSpeed()
 freq_string = processor .. " @ " .. freq .. " hz"
 
