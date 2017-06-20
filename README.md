@@ -15,6 +15,5 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 # Where to get it
 Check the [releases page](https://github.com/yyualice/3dfetch/releases). Or get it on titledb within FBI.
 
-# Requirements and building from source
-- [lpp-3ds](https://github.com/Rinnegatamante/lpp-3ds) (The .3dsx file to be placed alongside ` index.lua `)
-- If building a CIA, you will need [makerom](https://github.com/profi200/Project_CTR/releases) to create the CIA, the .elf from [lpp-3ds](https://github.com/Rinnegatamante/lpp-3ds) for the Lua interpreter, [3ds-tool](https://github.com/dnasdw/3dstool/releases) to recompile the ROM filesystem, and [bannertool](https://github.com/Steveice10/bannertool) to create the banner and icon files. Once you have all the requirements, simply run the ` build_cia.sh ` script.
+# Building from source
+- You will need [makerom](https://github.com/profi200/Project_CTR/releases) to create the CIA, the .elf from [lpp-3ds](https://github.com/Rinnegatamante/lpp-3ds) for the Lua interpreter, [3ds-tool](https://github.com/dnasdw/3dstool/releases) to recompile the ROM filesystem, and [bannertool](https://github.com/Steveice10/bannertool) to create the banner and icon files. Once you have all the requirements, simply run the ` build_cia.sh ` script.
