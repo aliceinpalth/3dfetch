@@ -1,5 +1,5 @@
 # 3dfetch
-Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3DS.
+Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3DS. RSF file based off of [this dummy RSF](https://gist.github.com/mid-kid/d9c4ce50407c71ec9ef3).
 
 # Features
 - Cycle through various text colors using the d-pad, and various background colors using the L and R buttons
@@ -14,3 +14,4 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 
 # Requirements
 - [lpp-3ds](https://github.com/Rinnegatamante/lpp-3ds) (The .3dsx file to be placed alongside ` index.lua `)
+- If building a CIA, [makerom](https://github.com/profi200/Project_CTR/releases) and the .elf from [lpp-3ds](https://github.com/Rinnegatamante/lpp-3ds)
