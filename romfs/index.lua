@@ -233,7 +233,7 @@ while true do
 
 	filepath = ""
 	-- Screenshot if A is pressed
-	if Controls.check(pad, KEY_A) then
+	if Controls.check(pad, KEY_A) and not (Controls.check(oldpad,KEY_A)) then
 		day_value, day, month, year = System.getDate() -- all ints
 		filepath = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
 		lastfp = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
