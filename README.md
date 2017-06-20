@@ -2,7 +2,7 @@
 Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3DS.
 
 # Features
-- Various colors
+- Cycle through various text colors using the d-pad, and various background colors using the L and R buttons
 - All information dynamically grabbed from 3DS' hardware
 - A nice way to show off your 3DS' specs/model to your friends
 - Use in tandem with [imgurup-3ds](https://github.com/Pirater12/imgurup-3ds) for an easy sharing experience
