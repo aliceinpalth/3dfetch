@@ -2,9 +2,11 @@
 Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3DS. RSF file based off of [this dummy RSF](https://gist.github.com/mid-kid/d9c4ce50407c71ec9ef3). Mainly developed as a method for learning 3DS homebrew toolkits, libraries, and build environments.
 
 # Features
-- Cycle through various text colors using the d-pad, and various background colors using the L and R buttons
-- All information dynamically grabbed from 3DS' hardware
+- Pretty colors!
+- Cycle through text colors using the d-pad, and background colors using the L and R buttons
 - Press the A button to take a screenshot, saved to the SD card root as ` 3dfetch_day_month_year_x.jpg `
+- All information dynamically grabbed from 3DS' hardware
+- New 3DS and old 3DS compatible
 - Use in tandem with [imgurup-3ds](https://github.com/Pirater12/imgurup-3ds) for an easy sharing experience
 
 # Screenshots
