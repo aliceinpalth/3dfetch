@@ -134,7 +134,7 @@ elseif model == 2 then
 	processor = "ARM11 Quadcore"
 elseif model == 3 then
 	model_string = "2ds"
-	processor = "ARM11 Quadcore"
+	processor = "ARM11 Duocore"
 elseif model == 4 then
 	model_string = "New3dsXL"
 	processor = "ARM11 Quadcore"
