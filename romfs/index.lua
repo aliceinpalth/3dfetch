@@ -141,21 +141,16 @@ majork,minork,revisionk = System.getKernel()
 kernel_string = majork .. "." .. minork .. "-" .. revisionk
 
 -- Region
-region = System.getRegion() - 1 -- ???
-region_string = ""
-if region == 0 then
-	region_string = region_string .. "North America"
-elseif region == 1 then
-	region_string = region_string .. "Europe"
-else
-	region_string = region_string .. "Japan"
-end
+region = System.getRegion()
+regionArray = {"North America", "Europe", "Japan"}
+region_string = regionArray[region]
+
 
 -- Battery status
 is_charging = System.isBatteryCharging()
 batteryPercent = System.getBatteryLife()
 is_charging_string = ""
-if is_charging == true then
+if is_charging then
 	is_charging_string = is_charging_string .. "Charging"
 else
 	is_charging_string = is_charging_string .. "Discharging"
