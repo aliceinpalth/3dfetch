@@ -1,10 +1,15 @@
 #!/bin/sh
+
 3dstool -cvtf romfs romfs.bin --romfs-dir romfs/
-echo "romfs.bin recompiled"
+if [[ $? != 0 ]]; then echo "romfs.bin failed to recompile"; exit $?; else echo "romfs.bin recompiled"; fi
+
 bannertool makebanner -i banner.png -a jingle.wav -o banner.bnr
-echo "Created banner"
+if [[ $? != 0 ]]; then echo "Failed to create banner"; exit $?; else echo "Created banner"; fi
+
 bannertool makesmdh -s "3dfetch" -l "3dfetch" -p "yyualice" -i icon.png -o icon.icn
-echo "Created icon"
+if [[ $? != 0 ]]; then echo "Failed to create icon"; exit $?; else echo "Created icon"; fi
+
 makerom -f cia -o 3dfetch.cia -DAPP_ENCRYPTED=false -rsf 3dfetch.rsf -target t -exefslogo -elf 3dfetch.elf -icon icon.icn -banner banner.bnr -romfs romfs.bin
-echo "CIA built"
+if [[ $? != 0 ]]; then echo "Failed to build CIA"; exit $?; else echo "CIA built"; fi
+
 echo "Done!"
