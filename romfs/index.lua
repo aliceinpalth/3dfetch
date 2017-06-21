@@ -121,27 +121,10 @@ ip = Network.getIPAddress()
 
 -- 3DS model
 model = System.getModel()
-model_string = ""
-processor = ""
-if model == 0 then
-	model_string = "3ds"
-	processor = "ARM11 Duocore"
-elseif model == 1 then
-	model_string = "3dsXL"
-	processor = "ARM11 Duocore"
-elseif model == 2 then
-	model_string = "New3ds"
-	processor = "ARM11 Quadcore"
-elseif model == 3 then
-	model_string = "2ds"
-	processor = "ARM11 Duocore"
-elseif model == 4 then
-	model_string = "New3dsXL"
-	processor = "ARM11 Quadcore"
-elseif model == 5 then
-	model_string = "New2dsXL"
-	processor = "ARM11 Quadcore"
-end
+modelArray = {"3ds", "3dsXL", "New3ds", "2ds", "New3dsXL", "New2dsXL"}
+processorArray = {"ARM11 Duocore", "ARM11 Duocore", "ARM11 Quadcore", "ARM11 Duocore", "ARM11 Quadcore", "ARM11 Quadcore"}
+modelString = modelArray[model+1]
+processor = processorArray[model+1]
 
 -- Username
 username = System.getUsername()
