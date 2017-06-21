@@ -123,7 +123,7 @@ ip = Network.getIPAddress()
 model = System.getModel()
 modelArray = {"3ds", "3dsXL", "New3ds", "2ds", "New3dsXL", "New2dsXL"}
 processorArray = {"ARM11 Duocore", "ARM11 Duocore", "ARM11 Quadcore", "ARM11 Duocore", "ARM11 Quadcore", "ARM11 Quadcore"}
-modelString = modelArray[model+1]
+model_string = modelArray[model+1]
 processor = processorArray[model+1]
 
 -- Username
