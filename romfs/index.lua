@@ -11,7 +11,12 @@ lastfp = ""
 
 bitmap = Screen.createImage(1, 1, bgcolor)
 Graphics.init()
-luma = Graphics.loadImage("romfs:/images/luma.png") 
+luma = Graphics.loadImage("romfs:/images/luma.png")
+luma_b = Graphics.loadImage("romfs:/images/luma.png") 
+luma_g = Graphics.loadImage("romfs:/images/luma_g.png") 
+luma_p = Graphics.loadImage("romfs:/images/luma_p.png") 
+luma_y = Graphics.loadImage("romfs:/images/luma_y.png") 
+
 
 timer = Timer.new()
 shouldRenderSS = false
@@ -90,18 +95,24 @@ end
 function updateLcolors()
 	if lcolorIndex == 0 then
 		lcolor = Color.new(0,255,255) -- Pastel blue
+		luma = luma_b
 	elseif lcolorIndex == 1 then
 		lcolor = Color.new(255,244,53) -- Pastel yellow
+		luma = luma_y
 	elseif lcolorIndex == 2 then
 		lcolor = Color.new(96,255,117) -- Pastel green
+		luma = luma_g
 	elseif lcolorIndex == 3 then
 		lcolor = Color.new(255,170,242) -- Pastel pink
+		luma = luma_p
 	elseif lcolorIndex > 3 then
 		lcolor = Color.new(0,255,255) -- Pastel blue
 		lcolorIndex = 0
+		luma = luma_b
 	elseif lcolorIndex < 0 then
 		lcolor = Color.new(255,204,247) -- Pastel pink
 		lcolorIndex = 3
+		luma = luma_p
 	end
 end
 
@@ -220,7 +231,7 @@ while true do
 
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0,320,0,240, bgcolor)	
-	Graphics.drawImage(5, 5, luma) 
+	Graphics.drawImage(0, 0, luma) 
 	Graphics.termBlend()
 
 	Graphics.initBlend(TOP_SCREEN)
