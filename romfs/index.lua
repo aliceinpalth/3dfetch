@@ -42,49 +42,13 @@ function printInfo()
 end
 
 function getMonthString(month)
-	if month == 1 then
-		return "Jan"
-	elseif month == 2 then
-		return "Feb"
-	elseif month == 3 then
-		return "March"
-	elseif month == 4 then
-		return "Apr"
-	elseif month == 5 then
-		return "May"
-	elseif month == 6 then
-		return "Jun"
-	elseif month == 7 then
-		return "July"
-	elseif month == 8 then
-		return "Aug"
-	elseif month == 9 then
-		return "Sept"
-	elseif month == 10 then
-		return "Oct"
-	elseif month == 11 then
-		return "Nov"
-	elseif month == 12 then
-		return "Dec"
-	end
+	monthArray = {"Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"}
+	return monthArray[month]
 end
 
 function getDayString(day)
-	if day_value == 1 then
-		return "Mon"
-	elseif day_value == 2 then
-		return "Tues"
-	elseif day_value == 3 then
-		return "Wed"
-	elseif day_value == 4 then
-		return "Thurs"
-	elseif day_value == 5 then
-		return "Fri"
-	elseif day_value == 6 then
-		return "Sat"
-	elseif day_value == 7 then
-		return "Sun"
-	end
+	dayArray = {"Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"}
+	return dayArray[day]
 end
 
 function updateLcolors()
@@ -177,21 +141,16 @@ majork,minork,revisionk = System.getKernel()
 kernel_string = majork .. "." .. minork .. "-" .. revisionk
 
 -- Region
-region = System.getRegion() - 1 -- ???
-region_string = ""
-if region == 0 then
-	region_string = region_string .. "North America"
-elseif region == 1 then
-	region_string = region_string .. "Europe"
-else
-	region_string = region_string .. "Japan"
-end
+region = System.getRegion()
+regionArray = {"North America", "Europe", "Japan"}
+region_string = regionArray[region]
+
 
 -- Battery status
 is_charging = System.isBatteryCharging()
 batteryPercent = System.getBatteryLife()
 is_charging_string = ""
-if is_charging == true then
+if is_charging then
 	is_charging_string = is_charging_string .. "Charging"
 else
 	is_charging_string = is_charging_string .. "Discharging"
