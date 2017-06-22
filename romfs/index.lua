@@ -38,13 +38,13 @@ function printInfo()
 
 	-- Writing right side of screen
 	xoffset = 160
-	Screen.debugPrint(xoffset,55,firmware_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,55,getLumaVer(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,70,"800x240, 320x240",rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,85,kernel_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,85,getKernelVer(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,100,freq_string,rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,115,is_charging_string,rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,130,free_space,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,160,region_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,160,getRegion(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,175,date_string,rcolor,TOP_SCREEN)
 end
 
@@ -133,17 +133,23 @@ username = System.getUsername()
 username = username .. "@" .. model_string
 
 -- Kernel
-majork,minork,revisionk = System.getKernel() 
-kernel_string = majork .. "." .. minork .. "-" .. revisionk
+function getKernelVer()
+	majork,minork,revisionk = System.getKernel() 
+	return majork .. "." .. minork .. "-" .. revisionk
+end
 
 -- Firmware
-majorL,minorL,revisionL = System.getLumaVersion()
-firmware_string = "Luma v" .. majorL .. "." .. minorL
+function getLumaVer()
+	majorL,minorL,revisionL = System.getLumaVersion()
+	return "Luma v" .. majorL .. "." .. minorL
+end
 
 -- Region
-region = System.getRegion()
-regionArray = {"North America", "Europe", "Japan"}
-region_string = regionArray[region]
+function getRegion()
+	region = System.getRegion()
+	regionArray = {"North America", "Europe", "Japan"}
+	return regionArray[region]
+end
 
 -- Battery status
 is_charging = System.isBatteryCharging()
