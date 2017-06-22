@@ -26,7 +26,7 @@ function printInfo()
 	-- Writing left side of screen
 	xoffset = 10
 	Screen.debugPrint(xoffset,10, username,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,25,"---------",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,25,"-----------",lcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,55,"Firmware:",lcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,70,"Resolution:",lcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,85,"Kernel:",lcolor,TOP_SCREEN)
@@ -145,15 +145,14 @@ region = System.getRegion()
 regionArray = {"North America", "Europe", "Japan"}
 region_string = regionArray[region]
 
-
 -- Battery status
 is_charging = System.isBatteryCharging()
-batteryPercent = System.getBatteryLife()
+batteryPercent = System.getBatteryPercentage()
 is_charging_string = ""
 if is_charging then
-	is_charging_string = is_charging_string .. "Charging"
+	is_charging_string = is_charging_string .. "Charging @ " .. batteryPercent .. "%"
 else
-	is_charging_string = is_charging_string .. "Discharging"
+	is_charging_string = is_charging_string .. "Discharging @ " .. batteryPercent .. "%"
 end
 
 -- Date
