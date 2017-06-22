@@ -27,23 +27,25 @@ function printInfo()
 	xoffset = 10
 	Screen.debugPrint(xoffset,10, username,rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,25,"---------",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,55,"Resolution:",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,70,"Kernel:",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,85,"CPU:",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,100,"Battery:",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,115,"Free space:",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,145,"Region:",lcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,160,"Date:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,55,"Firmware:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,70,"Resolution:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,85,"Kernel:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,100,"CPU:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,115,"Battery:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,130,"Free space:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,160,"Region:",lcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,175,"Date:",lcolor,TOP_SCREEN)
 
 	-- Writing right side of screen
 	xoffset = 160
-	Screen.debugPrint(xoffset,55,"800x240, 320x240",rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,70,kernel_string,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,85,freq_string,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,100,is_charging_string,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,115,free_space,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,145,region_string,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,160,date_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,55,firmware_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,70,"800x240, 320x240",rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,85,kernel_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,100,freq_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,115,is_charging_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,130,free_space,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,160,region_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,175,date_string,rcolor,TOP_SCREEN)
 end
 
 function getMonthString(month)
@@ -133,6 +135,10 @@ username = username .. "@" .. model_string
 -- Kernel
 majork,minork,revisionk = System.getKernel() 
 kernel_string = majork .. "." .. minork .. "-" .. revisionk
+
+-- Firmware
+majorL,minorL,revisionL = System.getLumaVersion()
+firmware_string = "Luma v" .. majorL .. "." .. minorL
 
 -- Region
 region = System.getRegion()

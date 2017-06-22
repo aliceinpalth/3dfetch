@@ -9,7 +9,7 @@ if [[ $? != 0 ]]; then echo "Failed to create banner"; exit $?; else echo "Creat
 bannertool makesmdh -s "3dfetch" -l "3dfetch" -p "yyualice" -i icon.png -o icon.icn
 if [[ $? != 0 ]]; then echo "Failed to create icon"; exit $?; else echo "Created icon"; fi
 
-makerom -f cia -o 3dfetch.cia -DAPP_ENCRYPTED=false -rsf 3dfetch.rsf -target t -exefslogo -elf 3dfetch.elf -icon icon.icn -banner banner.bnr -romfs romfs.bin
+makerom -f cia -o 3dfetch.cia -DAPP_ENCRYPTED=false -rsf 3dfetch.rsf -target t -exefslogo -elf lpp-3ds.elf -icon icon.icn -banner banner.bnr -romfs romfs.bin
 if [[ $? != 0 ]]; then echo "Failed to build CIA"; exit $?; else echo "CIA built"; fi
 
 echo "Done!"
