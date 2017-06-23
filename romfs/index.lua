@@ -25,7 +25,7 @@ shouldRenderSS = false
 function printInfo()
 	-- Writing left side of screen
 	xoffset = 10
-	Screen.debugPrint(xoffset,10, username,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,10, getUsernameString(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,25,"-----------",lcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,55,"Firmware:",lcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,70,"Resolution:",lcolor,TOP_SCREEN)
@@ -42,7 +42,7 @@ function printInfo()
 	Screen.debugPrint(xoffset,70,"800x240, 320x240",rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,85,getKernelVer(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,100,freq_string,rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,115,is_charging_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,115,getBatteryStatus(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,130,free_space,rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,160,getRegion(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,175,date_string,rcolor,TOP_SCREEN)
@@ -129,8 +129,9 @@ model_string = modelArray[model+1]
 processor = processorArray[model+1]
 
 -- Username
-username = System.getUsername()
-username = username .. "@" .. model_string
+function getUsernameString()
+	return System.getUsername() .. "@" .. model_string
+end
 
 -- Kernel
 function getKernelVer()
@@ -152,13 +153,11 @@ function getRegion()
 end
 
 -- Battery status
-is_charging = System.isBatteryCharging()
-batteryPercent = System.getBatteryPercentage()
-is_charging_string = ""
-if is_charging then
-	is_charging_string = is_charging_string .. "Charging @ " .. batteryPercent .. "%"
-else
-	is_charging_string = is_charging_string .. "Discharging @ " .. batteryPercent .. "%"
+function getBatteryStatus()
+	if System.isBatteryCharging() then
+		return "Charging @ " .. System.getBatteryPercentage() .. "%"
+	else
+		return "Discharging @ " .. System.getBatteryPercentage() .. "%"
 end
 
 -- Date
