@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [[ $1 == "clean" ]]; then
+	rm 3dfetch.cia banner.bnr icon.icn romfs.bin 2> /dev/null;
+	echo "Clean!";
+	exit $?; 
+fi
+
 3dstool -cvtf romfs romfs.bin --romfs-dir romfs/
 if [[ $? != 0 ]]; then echo "romfs.bin failed to recompile"; exit $?; else echo "romfs.bin recompiled"; fi
 
@@ -13,3 +19,4 @@ makerom -f cia -o 3dfetch.cia -DAPP_ENCRYPTED=false -rsf 3dfetch.rsf -target t -
 if [[ $? != 0 ]]; then echo "Failed to build CIA"; exit $?; else echo "CIA built"; fi
 
 echo "Done!"
+
