@@ -41,9 +41,9 @@ function printInfo()
 	Screen.debugPrint(xoffset,55,getLumaVer(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,70,"800x240, 320x240",rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,85,getKernelVer(),rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,100,freq_string,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,100,getCPUString(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,115,getBatteryStatus(),rcolor,TOP_SCREEN)
-	Screen.debugPrint(xoffset,130,free_space,rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,130,getFreeSpaceString(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,160,getRegion(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,175,date_string,rcolor,TOP_SCREEN)
 end
@@ -119,7 +119,10 @@ function updateBgcolors()
 end
 
 -- IP address
-ip = Network.getIPAddress()
+-- This function was only added for potential expandability
+function getConsoleIPAddress()
+	return Network.getIPAddress()
+end
 
 -- 3DS model
 model = System.getModel()
@@ -158,6 +161,7 @@ function getBatteryStatus()
 		return "Charging @ " .. System.getBatteryPercentage() .. "%"
 	else
 		return "Discharging @ " .. System.getBatteryPercentage() .. "%"
+	end
 end
 
 -- Date
@@ -167,11 +171,14 @@ month_string = getMonthString(month)
 date_string = day_value_string .. " " .. month_string .. " " .. day .. ", " .. year
 
 -- CPU Frequency
-freq = System.getCpuSpeed()
-freq_string = processor .. " @ " .. freq .. " hz"
+function getCPUString()
+	return processor .. " @ " .. System.getCpuSpeed() .. "hz"
+end
 
 -- Free space
-free_space = (math.floor(System.getFreeSpace()/1000000000)) .. " GB"
+function getFreeSpaceString()
+	return (math.floor(System.getFreeSpace()/1000000000)) .. " GB"
+end
 
 -- Main Loop
 while true do
