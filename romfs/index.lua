@@ -135,7 +135,8 @@ processor = processorArray[model+1]
 
 -- Username
 function getUsernameString()
-	return System.getUsername() .. "@" .. model_string
+	local rstring = System.getUsername() .. "@" .. model_string
+	return string.lower(rstring)
 end
 
 -- Kernel
