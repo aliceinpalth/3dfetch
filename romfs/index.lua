@@ -363,7 +363,9 @@ while true do
 	if Controls.check(Controls.read(),KEY_HOME) or Controls.check(Controls.read(),KEY_POWER) then
 		System.showHomeMenu()
 	end
-	
+
+	if Controls.check(pad, KEY_START) then System.exit() end
+
 	-- Exit if HomeMenu calls APP_EXITING
 	if System.checkStatus() == APP_EXITING then
 		Screen.freeImage(bitmap)
