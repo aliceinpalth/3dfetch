@@ -6,7 +6,7 @@ if [[ $1 == "clean" ]]; then
 	exit $?; 
 fi
 
-3dstool -cvtf romfs romfs.bin --romfs-dir romfs/
+3dstool -cvtf romfs romfs.bin --romfs-dir romfs/ &> /dev/null
 if [[ $? != 0 ]]; then echo "romfs.bin failed to recompile"; exit $?; else echo "romfs.bin recompiled"; fi
 
 bannertool makebanner -i banner.png -a jingle.wav -o banner.bnr

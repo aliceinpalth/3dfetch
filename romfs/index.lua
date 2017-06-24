@@ -9,6 +9,8 @@ photoNum = 0
 oldpad = 0
 lastfp = ""
 
+isMenuOpen = false
+
 bitmap = Screen.createImage(1, 1, bgcolor)
 Graphics.init()
 luma = Graphics.loadImage("romfs:/images/luma.png")
@@ -261,6 +263,11 @@ function getFreeSpaceString()
 	return (math.floor(System.getFreeSpace()/1000000000)) .. " GB"
 end
 
+-- Menu
+function showMenu()
+	return
+end
+
 -- Main Loop
 while true do
 
@@ -292,6 +299,12 @@ while true do
 		Screen.saveImage(bitmap, filepath .. ".jpg", false)
 		System.takeScreenshot(filepath .. ".jpg", false)
 		shouldRenderSS = true
+	end
+
+	-- Menu open
+	if Controls.check(pad, KEY_SELECT) and not (Controls.check(oldpad, KEY_SELECT)) then
+		if isMenuOpen then isMenuOpen = false elseif
+			not isMenuOpen then isMenuOpen = true end
 	end
 
 	-- Cycling lcolors
