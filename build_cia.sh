@@ -12,7 +12,7 @@ if [[ $? != 0 ]]; then echo "romfs.bin failed to recompile"; exit $?; else echo 
 bannertool makebanner -i banner.png -a jingle.wav -o banner.bnr
 if [[ $? != 0 ]]; then echo "Failed to create banner"; exit $?; else echo "Created banner"; fi
 
-bannertool makesmdh -s "3dfetch" -l "3dfetch" -p "yyualice" -i icon.png -o icon.icn
+bannertool makesmdh -s "3dfetch" -l "3dfetch" -p "yyualice & daedreth" -i icon.png -o icon.icn
 if [[ $? != 0 ]]; then echo "Failed to create icon"; exit $?; else echo "Created icon"; fi
 
 makerom -f cia -o 3dfetch.cia -DAPP_ENCRYPTED=false -rsf 3dfetch.rsf -target t -exefslogo -elf lpp-3ds.elf -icon icon.icn -banner banner.bnr -romfs romfs.bin

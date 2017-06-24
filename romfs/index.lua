@@ -38,7 +38,7 @@ function printInfo()
 
 	-- Writing right side of screen
 	xoffset = 160
-	Screen.debugPrint(xoffset,55,getLumaVer(),rcolor,TOP_SCREEN)
+	Screen.debugPrint(xoffset,55,getCFW(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,70,"800x240, 320x240",rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,85,getKernelVer(),rcolor,TOP_SCREEN)
 	Screen.debugPrint(xoffset,100,getCPUString(),rcolor,TOP_SCREEN)
@@ -142,9 +142,90 @@ function getKernelVer()
 	return majork .. "." .. minork .. "-" .. revisionk
 end
 
--- Firmware
+-- Improved CFW Function
+-- The Luma Version checking was adapted from astronautlevel2 and his StarUpdater, all credit where it's due
+-- Thanks Al <3
+function getCFW()
+	local majorL,minorL,revisionL = System.getLumaVersion()
+	local fileContent = ""
+
+	if majorL ~= 0 then
+		return "Luma3DS v" .. majorL .. "." .. minorL
+	end
+
+	if System.doesFileExist("/boot.firm") then
+		local file = io.open("/boot.firm", 0)
+		fileContent = io.read(file,0,io.size(file))
+		io.close(file)
+	elseif System.doesFileExist("/arm9loadehax.bin") then
+		local file = io.open("/arm9loaderhax.bin", 0)
+		fileContent = io.read(file,0,io.size(file))
+		io.close(file)
+	end
+
+	if string.match(fileContent, "Luma3DS") then
+		local searchString = "Luma3DS v"
+	      	local verString = "v"
+      		local isDone = false
+		local offset = string.find(fileContent, searchString)
+
+	        if (offset ~= nil) then
+        	        offset = offset + string.len(searchString)
+			while(isDone == false) do
+		                bitRead = fileContent:sub(offset,offset)	
+				if bitRead == " " then
+					isDone = true
+				else
+					verString = verString..bitRead
+				end
+				offset = offset + 1
+			end
+
+			return "Luma3DS " .. verString
+		end
+
+		if string.match(fileContent, "skeith") then
+			return "Skeith"
+		end
+
+		if string.match(fileContent, "corbenik") then
+			return "Corbenik"
+		end
+
+		if string.match(fileContent, "Rei") then
+			return "ReiNAND"
+		end
+
+		if string.match(fileContent, "cakes") then
+			return "Cakes"
+		end
+
+	end
+
+	if System.doesDirectoryExist("/rxTools") or System.doesFileExist("/rxTools.dat") then
+		return "rxTools"
+	end
+
+	if System.doesDirectoryExist("/reinand") then
+		return "ReiNAND"
+	end
+
+	if System.doesDirectoryExist("/aureinand") then
+		return "AuReiNAND"
+	end
+
+	if System.doesDirectoryExist("/luma") then
+		return "Luma3DS"
+	end
+
+	if System.doesDirectoryExist("/cakes") then
+		return "Cakes"
+	end
+end
+
+-- Firmware -> deprecated
 function getLumaVer()
-	majorL,minorL,revisionL = System.getLumaVersion()
+	local majorL,minorL,revisionL = System.getLumaVersion()
 	return "Luma v" .. majorL .. "." .. minorL
 end
 
