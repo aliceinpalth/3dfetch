@@ -157,7 +157,7 @@ function getCFW()
 		local file = io.open("/boot.firm", 0)
 		fileContent = io.read(file,0,io.size(file))
 		io.close(file)
-	elseif System.doesFileExist("/arm9loadehax.bin") then
+	elseif System.doesFileExist("/arm9loaderhax.bin") then
 		local file = io.open("/arm9loaderhax.bin", 0)
 		fileContent = io.read(file,0,io.size(file))
 		io.close(file)
