@@ -265,7 +265,10 @@ end
 
 -- Menu
 function showMenu()
-	return
+	Graphics.initBlend(BOTTOM_SCREEN)
+	Graphics.fillRect(0,320,0,240, bgcolor)
+	Graphics.termBlend()
+	Screen.debugPrint(20,20,"Menu Placeholder",lcolor, BOTTOM_SCREEN)
 end
 
 -- Main Loop
@@ -276,17 +279,20 @@ while true do
 	-- Updating screens
 	Screen.refresh()
 
+
+	if isMenuOpen then showMenu() else
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0,320,0,240, bgcolor)	
 	Graphics.drawImage(0, 0, luma) 
 	Graphics.termBlend()
+	end
 
 	Graphics.initBlend(TOP_SCREEN)
 	Graphics.fillRect(0,800,0,240, bgcolor)	
 	Graphics.termBlend()
 
 	pad = Controls.read()
-
+	
 	printInfo()
 
 	filepath = ""
