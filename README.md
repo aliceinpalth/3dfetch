@@ -1,4 +1,5 @@
-# 3dfetch
+![](http://i.imgur.com/49vYhos.png)
+
 Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3DS. RSF file based off of [this dummy RSF](https://gist.github.com/mid-kid/d9c4ce50407c71ec9ef3). Mainly developed as a method for learning 3DS homebrew toolkits, libraries, and build environments.
 
 # Features
