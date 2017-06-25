@@ -13,11 +13,11 @@ isMenuOpen = false
 
 bitmap = Screen.createImage(1, 1, bgcolor)
 Graphics.init()
-luma = Graphics.loadImage("romfs:/images/luma.png")
-luma_b = Graphics.loadImage("romfs:/images/luma.png") 
-luma_g = Graphics.loadImage("romfs:/images/luma_g.png") 
-luma_p = Graphics.loadImage("romfs:/images/luma_p.png") 
-luma_y = Graphics.loadImage("romfs:/images/luma_y.png") 
+picture = Graphics.loadImage("romfs:/images/luma.png")
+picture_b = Graphics.loadImage("romfs:/images/luma.png") 
+picture_g = Graphics.loadImage("romfs:/images/luma_g.png") 
+picture_p = Graphics.loadImage("romfs:/images/luma_p.png") 
+picture_y = Graphics.loadImage("romfs:/images/luma_y.png") 
 
 
 timer = Timer.new()
@@ -63,24 +63,24 @@ end
 function updateLcolors()
 	if lcolorIndex == 0 then
 		lcolor = Color.new(0,255,255) -- Pastel blue
-		luma = luma_b
+		picture = picture_b
 	elseif lcolorIndex == 1 then
 		lcolor = Color.new(255,244,53) -- Pastel yellow
-		luma = luma_y
+		picture = picture_y
 	elseif lcolorIndex == 2 then
 		lcolor = Color.new(96,255,117) -- Pastel green
-		luma = luma_g
+		picture = picture_g
 	elseif lcolorIndex == 3 then
 		lcolor = Color.new(255,170,242) -- Pastel pink
-		luma = luma_p
+		picture = picture_p
 	elseif lcolorIndex > 3 then
 		lcolor = Color.new(0,255,255) -- Pastel blue
 		lcolorIndex = 0
-		luma = luma_b
+		picture = picture_b
 	elseif lcolorIndex < 0 then
 		lcolor = Color.new(255,204,247) -- Pastel pink
 		lcolorIndex = 3
-		luma = luma_p
+		picture = picture_p
 	end
 end
 
@@ -272,6 +272,42 @@ function showMenu()
 	Screen.debugPrint(20,20,"Menu Placeholder",lcolor, BOTTOM_SCREEN)
 end
 
+<<<<<<< HEAD
+function initCFWLogo()
+
+	local cfw = getCFW()
+
+	if string.match(cfw, "Luma") then
+		picture = Graphics.loadImage("romfs:/images/luma.png")
+		picture_b = Graphics.loadImage("romfs:/images/luma.png") 
+		picture_g = Graphics.loadImage("romfs:/images/luma_g.png") 
+		picture_p = Graphics.loadImage("romfs:/images/luma_p.png") 
+		picture_y = Graphics.loadImage("romfs:/images/luma_y.png") 
+	elseif string.match(cfw, "Rei") then -- thanks datcom
+		picture = Graphics.loadImage("romfs:/images/rei.png")
+		picture_b = Graphics.loadImage("romfs:/images/rei.png") 
+		picture_g = Graphics.loadImage("romfs:/images/rei_g.png") 
+		picture_p = Graphics.loadImage("romfs:/images/rei_p.png") 
+		picture_y = Graphics.loadImage("romfs:/images/rei_y.png") 
+	elseif string.match(cfw, "rxTools") then -- thanks Al
+		picture = Graphics.loadImage("romfs:/images/rx.png")
+		picture_b = Graphics.loadImage("romfs:/images/rx.png") 
+		picture_g = Graphics.loadImage("romfs:/images/rx_g.png")
+		picture_p = Graphics.loadImage("romfs:/images/rx_p.png") 
+		picture_y = Graphics.loadImage("romfs:/images/rx_y.png") 
+	end
+end
+
+function drawCFWLogo()
+	Graphics.initBlend(BOTTOM_SCREEN)
+	Graphics.fillRect(0,320,0,240,bgcolor)
+	Graphics.drawImage(0,0,picture)
+	Graphics.termBlend()
+end
+
+-- Last function call before main loop engages
+initCFWLogo()
+
 -- Main Loop
 while true do
 
@@ -280,7 +316,8 @@ while true do
 	-- Updating screens
 	Screen.refresh()
 
-
+	if isMenuOpen then showMenu() else drawCFWLogo() end
+	
 	if isMenuOpen then showMenu() else
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0,320,0,240, bgcolor)	
