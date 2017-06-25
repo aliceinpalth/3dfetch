@@ -272,7 +272,7 @@ function showMenu()
 	Screen.debugPrint(20,20,"Menu Placeholder",lcolor, BOTTOM_SCREEN)
 end
 
-<<<<<<< HEAD
+
 function initCFWLogo()
 
 	local cfw = getCFW()
@@ -318,13 +318,6 @@ while true do
 
 	if isMenuOpen then showMenu() else drawCFWLogo() end
 	
-	if isMenuOpen then showMenu() else
-	Graphics.initBlend(BOTTOM_SCREEN)
-	Graphics.fillRect(0,320,0,240, bgcolor)	
-	Graphics.drawImage(0, 0, luma) 
-	Graphics.termBlend()
-	end
-
 	Graphics.initBlend(TOP_SCREEN)
 	Graphics.fillRect(0,800,0,240, bgcolor)	
 	Graphics.termBlend()
