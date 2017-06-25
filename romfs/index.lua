@@ -209,7 +209,7 @@ function getCFW()
 		return "rxTools"
 	end
 
-	if System.doesDirectoryExist("/reinand") then
+	if System.doesDirectoryExist("/rei") then
 		return "ReiNAND"
 	end
 
