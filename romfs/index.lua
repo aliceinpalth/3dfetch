@@ -186,23 +186,22 @@ function getCFW()
 
 			return "Luma3DS " .. verString
 		end
+	end
 
-		if string.match(fileContent, "skeith") then
-			return "Skeith"
-		end
+	if string.match(fileContent, "skeith") then
+		return "Skeith"
+	end
+	
+	if string.match(fileContent, "corbenik") then
+		return "Corbenik"
+	end
 
-		if string.match(fileContent, "corbenik") then
-			return "Corbenik"
-		end
+	if string.match(fileContent, "Rei") then
+		return "ReiNAND"
+	end
 
-		if string.match(fileContent, "Rei") then
-			return "ReiNAND"
-		end
-
-		if string.match(fileContent, "cakes") then
-			return "Cakes"
-		end
-
+	if string.match(fileContent, "cakes") then
+		return "Cakes"
 	end
 
 	if System.doesDirectoryExist("/rxTools") or System.doesFileExist("/rxTools.dat") then
