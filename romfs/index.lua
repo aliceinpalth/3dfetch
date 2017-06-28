@@ -308,10 +308,11 @@ end
 
 function animateInvocation()	
 	--local ps = string.lower(getUsernameString()) .. "@" .. string.lower(getCPUString(1))
-        --Graphics.initBlend(BOTTOM_SCREEN)
+        --Screen.refresh()
+	--Graphics.initBlend(BOTTOM_SCREEN)
         --Graphics.fillRect(0, 320, 0, 240, colors.background)
         --Graphics.termBlend()
-        Screen.debugPrint(20, 20, "whatthefuck", colors.left, TOP_SCREEN)
+        --Screen.debugPrint(20, 20, ps, colors.left, TOP_SCREEN)
 	-- System.sleep(3)
 end
 
@@ -331,7 +332,7 @@ end
 
 -- Last function calls before main loop engages
 initCFWLogo()
-animateInvocation()
+--animateInvocation()
 
 -- Main loop
 while true do
