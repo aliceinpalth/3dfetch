@@ -306,6 +306,15 @@ function initCFWLogo()
 
 end
 
+function animateInvocation()	
+	--local ps = string.lower(getUsernameString()) .. "@" .. string.lower(getCPUString(1))
+        --Graphics.initBlend(BOTTOM_SCREEN)
+        --Graphics.fillRect(0, 320, 0, 240, colors.background)
+        --Graphics.termBlend()
+        Screen.debugPrint(20, 20, "whatthefuck", colors.left, TOP_SCREEN)
+	-- System.sleep(3)
+end
+
 function drawCFWLogo()
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0,320,0,240,colors.background)
@@ -322,6 +331,7 @@ end
 
 -- Last function calls before main loop engages
 initCFWLogo()
+animateInvocation()
 
 -- Main loop
 while true do
@@ -332,7 +342,7 @@ while true do
 	if isMenuOpen then showMenu() else drawCFWLogo() end
 
 	Graphics.initBlend(TOP_SCREEN)
-	Graphics.fillRect(0, 800, 0, 250, colors.background)
+	Graphics.fillRect(0, 800, 0, 240, colors.background)
 	Graphics.termBlend()
 
 	pad = Controls.read()
