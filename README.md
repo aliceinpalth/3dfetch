@@ -27,4 +27,5 @@ Check the [releases page](https://github.com/yyualice/3dfetch/releases). Or get 
 The compiled binary (lpp-3ds.elf) is already part of the repository, we strongly suggest against attempts to compile it yourself,
 if such necessity arises, visit the forks repository for instructions.
 
-Once you have all the requirements, simply run the ` build_cia.sh ` script.
+Once you have all the requirements, simply run `make` to build an installable CIA-file.
+If you wish to use 3dfetch inside your Homebrew Launcher and thus require a 3dsx file, run `make 3dsx` instead and merge the `/3ds` folder with the one found on your SD card.
