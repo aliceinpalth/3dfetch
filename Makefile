@@ -6,10 +6,11 @@ CIA_DEPENDENCIES=lpp-3ds.elf romfs.bin banner.bnr 3dfetch.smdh 3dfetch.rsf
 3dfetch.cia: ${CIA_DEPENDENCIES}
 	makerom -f cia -o $@ -DAPP_ENCRYPTED=false -rsf 3dfetch.rsf -target t -exefslogo -elf lpp-3ds.elf -icon 3dfetch.smdh -banner banner.bnr -romfs romfs.bin
 
+# This one is for debugging purposes, some functionality is broken unless using a CIA
 .PHONY: 3dsx
 3dsx: 3dfetch.3dsx
-	$(info **********  3dsx file built **********)
-
+	3dslink $<
+	
 .PHONY: cia
 cia: 3dfetch.cia
 	$(info **********  cia file built **********)

@@ -161,7 +161,7 @@ function getKernelVersionString()
 end
 
 function getBatteryStatusString()
-	if System.isBatteryCharging then return "Charging @ " .. System.getBatteryPercentage() .. "%" else
+	if System.isBatteryCharging() then return "Charging @ " .. System.getBatteryPercentage() .. "%" else
 					 return "Discharging @ " .. System.getBatteryPercentage() .. "%" end
 end
 
@@ -307,13 +307,70 @@ function initCFWLogo()
 end
 
 function animateInvocation()	
-	--local ps = string.lower(getUsernameString()) .. "@" .. string.lower(getCPUString(1))
-        --Screen.refresh()
-	--Graphics.initBlend(BOTTOM_SCREEN)
-        --Graphics.fillRect(0, 320, 0, 240, colors.background)
-        --Graphics.termBlend()
-        --Screen.debugPrint(20, 20, ps, colors.left, TOP_SCREEN)
-	-- System.sleep(3)
+	local ps = string.lower(getUsernameString()) .. "@" .. string.lower(getCPUString(1)) .. " ~ $"
+       	 
+	Screen.refresh()
+	Graphics.initBlend(BOTTOM_SCREEN)
+        Graphics.fillRect(0, 320, 0, 240, colors.background)
+        Graphics.termBlend()
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.clear(BOTTOM_SCREEN)
+	Screen.debugPrint(10, 10, ps, colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3d", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3df", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfe", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfet", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfetc", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfetch", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfetch_", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfetch", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.debugPrint(10, 10, ps .. " 3dfetch_", colors.right, TOP_SCREEN)
+	Screen.flip()
+	System.sleep(2)
+
+	System.sleep(5)
 end
 
 function drawCFWLogo()
@@ -332,7 +389,7 @@ end
 
 -- Last function calls before main loop engages
 initCFWLogo()
---animateInvocation()
+animateInvocation()
 
 -- Main loop
 while true do
