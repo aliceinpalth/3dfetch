@@ -289,7 +289,13 @@ function initCFWLogo()
 		logos.blue = Graphics.loadImage("romfs:/images/luma.png") 
 		logos.green = Graphics.loadImage("romfs:/images/luma_g.png") 
 		logos.pink = Graphics.loadImage("romfs:/images/luma_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/luma_y.png") 
+		logos.yellow = Graphics.loadImage("romfs:/images/luma_y.png")
+	elseif string.match(cfw,"AuReiNAND") then
+		logos.default = Graphics.loadImage("romfs:/images/luma.png")
+		logos.blue = Graphics.loadImage("romfs:/images/luma.png") 
+		logos.green = Graphics.loadImage("romfs:/images/luma_g.png") 
+		logos.pink = Graphics.loadImage("romfs:/images/luma_p.png") 
+		logos.yellow = Graphics.loadImage("romfs:/images/luma_y.png")
 	elseif string.match(cfw, "Rei") then -- thanks datcom
 		logos.default = Graphics.loadImage("romfs:/images/rei.png")
 		logos.blue = Graphics.loadImage("romfs:/images/rei.png") 
@@ -308,6 +314,12 @@ function initCFWLogo()
 		logos.green = Graphics.loadImage("romfs:/images/cakes_g.png")
 		logos.pink = Graphics.loadImage("romfs:/images/cakes_p.png") 
 		logos.yellow = Graphics.loadImage("romfs:/images/cakes_y.png")
+	elseif string.match(cfw, "Skeith") or string.match(cfw, "Corbenik") then
+		logos.default = Graphics.loadImage("romfs:/images/corbenik.png")
+		logos.blue = Graphics.loadImage("romfs:/images/corbenik.png") 
+		logos.green = Graphics.loadImage("romfs:/images/corbenik_g.png") 
+		logos.pink = Graphics.loadImage("romfs:/images/corbenik_p.png") 
+		logos.yellow = Graphics.loadImage("romfs:/images/corbenik_y.png")
 	end
 
 end
