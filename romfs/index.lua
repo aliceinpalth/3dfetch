@@ -6,6 +6,13 @@ colors =
 	left = Color.new(0, 255, 255)
 }
 
+local configs =
+{
+	showAnimation = true
+}
+
+configPath = "/3dfetch.conf"
+
 -- Indexes
 colorIndex =
 {
@@ -35,6 +42,38 @@ logos =
 	pink = Graphics.loadImage("romfs:/images/isabelle.png"),
 	yellow = Graphics.loadImage("romfs:/images/isabelle.png")
 }
+
+-- for debugging purposes
+function debugLog(debugString)
+    local file = io.open("/debug", FCREATE)
+    local content = io.read(file, 0, io.size(file))..debugString
+    io.write(file, 0, content, string.len(content))
+    io.close(file)
+end
+
+-- Config code written by Al, both those functions
+function readConfig(filePath)
+	local fileContent = ""
+	
+	if System.doesFileExist(filePath) then
+		local file = io.open(filePath, 0)
+		fileContent = io.read(file, 0, io.size(file))
+		io.close(file)
+	end
+	
+	fileContent = string.gsub(fileContent, "^%s*(.-)%s*$", "%1") --Remove trailing whitespace from string, from http://lua-users.org/wiki/CommonFunctions
+	fileContent = string.gsub(fileContent, "\r", "") --Remove windows characters
+	return fileContent
+end
+
+function setConfigs(configFileContent)
+	local configStrings = {System.split(configFileContent, "\n")}
+	for key,value in pairs(configStrings) do
+		local configOption = {System.split(value, ":")}
+		configs[string.sub(configOption[1], 1, string.find(configOption[1], "\x00", 1) - 1)] = "true" == configOption[2]
+	end
+
+end
 
 -- Text output to top screen
 function printTopLeftSide()
@@ -370,7 +409,9 @@ end
 
 -- Last function calls before main loop engages
 initCFWLogo()
-animateInvocation()
+configContent = readConfig(configPath)
+if (configContent ~= "") then setConfigs(configContent) end -- if configFile is empty we just use defaults
+if (configs["showAnimation"]) then animateInvocation() end
 
 -- Main loop
 while true do
