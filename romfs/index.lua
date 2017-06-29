@@ -316,12 +316,12 @@ end
 
 function animateInvocation()	
 	local ps = string.lower(getUsernameString()) .. "@" .. string.lower(getCPUString(1)) .. " ~ $ "
-	local comnmandString = "3dfetch_"
+	local commandString = "3dfetch_"
 
 	Screen.refresh()
 	Graphics.initBlend(BOTTOM_SCREEN)
-    Graphics.fillRect(0, 320, 0, 240, colors.background)
-    Graphics.termBlend()
+	Graphics.fillRect(0, 320, 0, 240, colors.background)
+	Graphics.termBlend()
 	Screen.refresh()
 	Screen.clear(TOP_SCREEN)
 	Screen.clear(BOTTOM_SCREEN)
