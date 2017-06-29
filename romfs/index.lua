@@ -61,8 +61,8 @@ function readConfig(filePath)
 		io.close(file)
 	end
 	
-	fileContent = string.gsub(fileContent, "^%s*(.-)%s*$", "%1") --Remove trailing whitespace from string, from http://lua-users.org/wiki/CommonFunctions
 	fileContent = string.gsub(fileContent, "\r", "") --Remove windows characters
+	if(string.sub(fileContent, -1) == "\n") then fileContent = string.sub(fileContent, 1, -2) end
 	return fileContent
 end
 
