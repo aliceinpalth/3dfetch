@@ -18,6 +18,13 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 # Where to get it
 Check the [releases page](https://github.com/yyualice/3dfetch/releases). Or get it on titledb within FBI.
 
+# Optional configuration
+You are able to modify the way 3dfetch works by creating a file at the root of your SD card called `3dfetch.conf`
+So far, the following options are available:
+
+`showAnimation:true | false` to enable/disable the little shell animation on startup.
+
+
 # Building from source
 - You will need [makerom](https://github.com/profi200/Project_CTR/releases) in your `$PATH` to create the CIA.
 - You will need [3ds-tool](https://github.com/dnasdw/3dstool/releases) in your `$PATH` to recompile the ROM filesystem.
@@ -28,4 +35,4 @@ The compiled binary (lpp-3ds.elf) is already part of the repository, we strongly
 if such necessity arises, visit the forks repository for instructions.
 
 Once you have all the requirements, simply run `make` to build an installable CIA-file.
-If you wish to use 3dfetch inside your Homebrew Launcher and thus require a 3dsx file, run `make 3dsx` instead and merge the `/3ds` folder with the one found on your SD card.
+If you wish to use 3dfetch inside your Homebrew Launcher and thus require a 3dsx file, run `make 3dfetch.3dsx` instead and merge the `/3ds` folder with the one found on your SD card.
