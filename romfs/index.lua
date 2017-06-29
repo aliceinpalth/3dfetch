@@ -301,7 +301,13 @@ function initCFWLogo()
 		logos.blue = Graphics.loadImage("romfs:/images/rx.png") 
 		logos.green = Graphics.loadImage("romfs:/images/rx_g.png")
 		logos.pink = Graphics.loadImage("romfs:/images/rx_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/rx_y.png") 
+		logos.yellow = Graphics.loadImage("romfs:/images/rx_y.png")
+	elseif string.match(cfw, "Cakes") then 
+		logos.default = Graphics.loadImage("romfs:/images/cakes.png")
+		logos.blue = Graphics.loadImage("romfs:/images/cakes.png") 
+		logos.green = Graphics.loadImage("romfs:/images/cakes_g.png")
+		logos.pink = Graphics.loadImage("romfs:/images/cakes_p.png") 
+		logos.yellow = Graphics.loadImage("romfs:/images/cakes_y.png")
 	end
 
 end
@@ -446,30 +452,4 @@ while true do
 		System.exit()
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
