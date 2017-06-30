@@ -437,7 +437,10 @@ function showMenu()
 	for option,value in pairs(configs) do
 		optionRects[option] = {val = value, x = cur_x, y = cur_y, end_x = cur_x + OPTION_RECT_SIZE["x"], end_y = cur_y + OPTION_RECT_SIZE["y"]}
 		cur_x = cur_x + OPTION_RECT_SIZE["x"]
-		cur_y = cur_y + OPTION_RECT_SIZE["y"]
+		if (cur_x > 300) then 
+			cur_x = 20
+			cur_y = cur_y + OPTION_RECT_SIZE["y"]
+		end
 
 		currentRect = optionRects[option]
 		local color = ""
