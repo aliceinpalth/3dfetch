@@ -50,7 +50,7 @@ logos =
 }
 
 -- Rectangles!
-local OPTION_RECT_SIZE 	= {x = 80, y = 66}
+local OPTION_RECT_SIZE 	= {x = 300, y = 66}
 local MENU_RECT_SIZE	= {x = 60, y = 26}
 
 -- Append a line to a file
@@ -438,10 +438,10 @@ function showMenu()
 		cur_x = cur_x + OPTION_RECT_SIZE["x"] + 20 -- 20 is for padding
 		if (cur_x > 300) then 
 			cur_x = 20
-			cur_y = cur_y + OPTION_RECT_SIZE["y"]
+			cur_y = cur_y + OPTION_RECT_SIZE["y"] + 20
 		end
 
-		currentRect = optionRects[option]
+		local currentRect = optionRects[option]
 		local color = ""
 		if value == true then color = colors.green else color = colors.red end
 		Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
@@ -453,9 +453,24 @@ function showMenu()
 	Screen.flip()
 	System.sleep(5)
 	local pad = Controls.read()
+	local touchPos_x, touchPos_y = Controls.readTouch()
 
 	while not (Controls.check(pad, KEY_SELECT)) do 
 		pad = Controls.read()
+
+		if touchPos_x ~= 0 or touchPos_y ~= 0 then
+			for option,rect in pairs(configs) do
+				local currentRect = optionsRect[option]
+				if currentRect["x"] < touchPos_x and currentRect["end_x"] > touchPos_x and currentRect["y"] < touchPos_y and currentRect["end_y"] > touchPos_y then
+					configs[option] = ~configs[option]
+					Screen.refresh()
+					local color = ""
+					if value == true then color = colors.green else color = colors.red end
+					Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
+					Screen.flip()
+				end
+			end
+		end
 	end
 end
 
