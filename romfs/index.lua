@@ -51,7 +51,7 @@ logos =
 }
 
 -- Rectangles!
-local OPTION_RECT_SIZE 	= {x = 300, y = 50}
+local OPTION_RECT_SIZE 	= {x = 275, y = 50}
 local MENU_RECT_SIZE	= {x = 60, y = 26}
 
 -- Append a line to a file
@@ -395,6 +395,7 @@ function drawCFWLogo()
 	Graphics.termBlend()
 end
 
+-- This function was made actually good by Al. Thanks Al <3
 function showMenu()
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0, 320, 0, 240, colors.background)
@@ -407,7 +408,7 @@ function showMenu()
 	for option,value in pairs(configs) do
 		optionRects[option] = {val = value, x = cur_x, y = cur_y, end_x = cur_x + OPTION_RECT_SIZE["x"], end_y = cur_y + OPTION_RECT_SIZE["y"]}
 		cur_x = cur_x + OPTION_RECT_SIZE["x"] + 20 -- 20 is for padding
-		if (cur_x > 300) then 
+		if (cur_x + OPTION_RECT_SIZE["x"] + 20 > 320) then 
 			cur_x = 20
 			cur_y = cur_y + OPTION_RECT_SIZE["y"] + 20
 		end
