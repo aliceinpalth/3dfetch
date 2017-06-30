@@ -23,7 +23,9 @@ You are able to modify the way 3dfetch works by creating a file at the root of y
 So far, the following options are available:
 
 `showAnimation:true | false` to enable/disable the little shell animation on startup.
+
 `showSplash:true | false` to enable/disable the CFW splash on the bottom
+
 `showCFW:true | false` to enable/disable CFW detection
 
 # Reporting issues
