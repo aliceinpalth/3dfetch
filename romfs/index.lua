@@ -5,7 +5,8 @@ colors =
 	right = Color.new(255, 255, 255),
 	left = Color.new(0, 255, 255),
 	red = Color.new(255, 0, 0),
-	green = Color.new(0, 255, 0)
+	green = Color.new(0, 255, 0),
+	black = Color.new(0, 0, 0)
 }
 
 -- Configuration option
@@ -445,7 +446,7 @@ function showMenu()
 		local color = ""
 		if value == true then color = colors.green else color = colors.red end
 		Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
-		Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.background, BOTTOM_SCREEN)
+		Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.black, BOTTOM_SCREEN)
 	end
 
 	Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
@@ -461,7 +462,9 @@ function showMenu()
 		if touchPos_x ~= 0 or touchPos_y ~= 0 then
 			for option,rect in pairs(configs) do
 				local currentRect = optionsRect[option]
+				animatePrint(touchPos_x, touchPos_y, currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], 20)
 				if currentRect["x"] < touchPos_x and currentRect["end_x"] > touchPos_x and currentRect["y"] < touchPos_y and currentRect["end_y"] > touchPos_y then
+					
 					configs[option] = ~configs[option]
 					Screen.refresh()
 					local color = ""
