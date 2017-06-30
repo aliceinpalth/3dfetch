@@ -347,7 +347,16 @@ function initCFWLogo()
 	local cfw = getCFWString()
 	if string.match(cfw, "Luma") then cfw = "Luma3DS" end
 
-	local fileName = {Luma3DS = "luma", AuReiNAND = "luma", ReiNAND = "rei", rxTools = "rx", Cakes = "cakes", Skeith = "corbenik", Corbenik = "corbenik"}
+	local fileName =
+	{
+		Luma3DS = "luma",
+		AuReiNAND = "luma",
+		ReiNAND = "rei",
+		rxTools = "rx",
+		Cakes = "cakes",
+		Skeith = "corbenik",
+		Corbenik = "corbenik"
+	}
 
 	logos.default = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. ".png")
 	logos.blue = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. ".png")

@@ -8,6 +8,7 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 - Press the A button to take a screenshot, saved to the SD card root as ` 3dfetch_day_month_year_x.jpg `
 - All information dynamically grabbed from 3DS' hardware
 - New 3DS and old 3DS compatible
+- Press select for a configuration menu
 - Use in tandem with [imgurup-3ds](https://github.com/Pirater12/imgurup-3ds) for an easy sharing experience
 
 # Screenshots
@@ -43,5 +44,7 @@ The compiled binary (lpp-3ds.elf) is already part of the repository, we strongly
 if such necessity arises, visit the forks repository for instructions.
 
 Once you have all the requirements, simply run `make` to build an installable CIA-file.
+
 If you wish to use 3dfetch inside your Homebrew Launcher and thus require a 3dsx file, run `make 3dfetch.3dsx` instead and merge the `/3ds` folder with the one found on your SD card.
+
 If you would like to have it be sent via network to your console, open up the Homebrew Launcher, press `Y` and run `make 3dsx` instead.
