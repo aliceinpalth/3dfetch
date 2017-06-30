@@ -45,15 +45,15 @@ logos =
 	yellow = Graphics.loadImage("romfs:/images/isabelle.png")
 }
 
--- For debugging purposes
-function debugLog(debugString)
-    local file = io.open("/debug", FCREATE)
+-- Append a line to a file
+function writeLine(filePath, fileString)
+    local file = io.open(filePath, FCREATE)
     local content = io.read(file, 0, io.size(file))..debugString
     io.write(file, 0, content, string.len(content))
     io.close(file)
 end
 
--- Config code written by Al, both those functions
+-- Config code written by Al, all of these functions
 function readConfig(filePath)
 	local fileContent = ""
 	
@@ -75,6 +75,12 @@ function setConfigs(configFileContent)
 		configs[string.sub(configOption[1], 1, string.find(configOption[1], "\x00", 1) - 1)] = "true" == configOption[2]
 	end
 
+end
+
+function writeConfig(filePath)
+	if System.doesFileExist(filePath) then System.deleteFile(filePath) end
+
+	for option,value in pairs(configs) do writeLine(filePath, option..":"..value.."\n") end
 end
 
 -- Text output to top screen
