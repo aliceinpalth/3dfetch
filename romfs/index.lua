@@ -338,46 +338,16 @@ end
 
 function initCFWLogo()
 	local cfw = getCFWString()
+	if string.match(cfw, "Luma") then cfw = "Luma3DS" end
 
-	if string.match(cfw, "Luma") then
-		logos.default = Graphics.loadImage("romfs:/images/luma.png")
-		logos.blue = Graphics.loadImage("romfs:/images/luma.png") 
-		logos.green = Graphics.loadImage("romfs:/images/luma_g.png") 
-		logos.pink = Graphics.loadImage("romfs:/images/luma_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/luma_y.png")
-	elseif string.match(cfw,"AuReiNAND") then
-		logos.default = Graphics.loadImage("romfs:/images/luma.png")
-		logos.blue = Graphics.loadImage("romfs:/images/luma.png") 
-		logos.green = Graphics.loadImage("romfs:/images/luma_g.png") 
-		logos.pink = Graphics.loadImage("romfs:/images/luma_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/luma_y.png")
-	elseif string.match(cfw, "Rei") then -- thanks datcom
-		logos.default = Graphics.loadImage("romfs:/images/rei.png")
-		logos.blue = Graphics.loadImage("romfs:/images/rei.png") 
-		logos.green = Graphics.loadImage("romfs:/images/rei_g.png") 
-		logos.pink = Graphics.loadImage("romfs:/images/rei_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/rei_y.png") 
-	elseif string.match(cfw, "rxTools") then -- thanks Al
-		logos.default = Graphics.loadImage("romfs:/images/rx.png")
-		logos.blue = Graphics.loadImage("romfs:/images/rx.png") 
-		logos.green = Graphics.loadImage("romfs:/images/rx_g.png")
-		logos.pink = Graphics.loadImage("romfs:/images/rx_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/rx_y.png")
-	elseif string.match(cfw, "Cakes") then 
-		logos.default = Graphics.loadImage("romfs:/images/cakes.png")
-		logos.blue = Graphics.loadImage("romfs:/images/cakes.png") 
-		logos.green = Graphics.loadImage("romfs:/images/cakes_g.png")
-		logos.pink = Graphics.loadImage("romfs:/images/cakes_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/cakes_y.png")
-	elseif string.match(cfw, "Skeith") or string.match(cfw, "Corbenik") then
-		logos.default = Graphics.loadImage("romfs:/images/corbenik.png")
-		logos.blue = Graphics.loadImage("romfs:/images/corbenik.png") 
-		logos.green = Graphics.loadImage("romfs:/images/corbenik_g.png") 
-		logos.pink = Graphics.loadImage("romfs:/images/corbenik_p.png") 
-		logos.yellow = Graphics.loadImage("romfs:/images/corbenik_y.png")
-	end
+	local fileName = {Luma3DS = "luma", AuReiNAND = "luma", ReiNAND = "rei", rxTools = "rx", Cakes = "cakes", Skeith = "corbenik", Corbenik = "corbenik"}
 
-end
+	logos.default = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. ".png")
+	logos.blue = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. ".png")
+	logos.green = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. "_g.png")
+	logos.pink = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. "_p.png")
+	logos.yellow = Graphics.loadImage("romfs:/images/" .. fileName[cfw].. "_y.png")
+end	
 
 function animatePrint(string, time)
 	Screen.refresh()
