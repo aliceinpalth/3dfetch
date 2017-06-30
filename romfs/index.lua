@@ -3,7 +3,9 @@ colors =
 {
 	background = Color.new(0, 0, 0),
 	right = Color.new(255, 255, 255),
-	left = Color.new(0, 255, 255)
+	left = Color.new(0, 255, 255),
+	red = Color.new(255, 0, 0),
+	green = Color.new(0, 255, 0)
 }
 
 -- Configuration option
@@ -46,6 +48,10 @@ logos =
 	pink = Graphics.loadImage("romfs:/images/isabelle.png"),
 	yellow = Graphics.loadImage("romfs:/images/isabelle.png")
 }
+
+-- Rectangles!
+local OPTION_RECT_SIZE 	= {x = 80, y = 66}
+local MENU_RECT_SIZE	= {x = 60, y = 26}
 
 -- Append a line to a file
 function writeLine(filePath, fileString)
@@ -422,7 +428,24 @@ function showMenu()
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0, 320, 0, 240, colors.background)
 	Graphics.termBlend()
-	Screen.debugPrint(20, 20, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
+	local cur_x = 20
+	local cur_y = 20
+	local optionRects = {}
+	Screen.refresh()
+
+	for option,value in pairs(configs) do
+		optionRects[option] = {val = value, x = cur_x, y = cur_y, end_x = cur_x + OPTION_RECT_SIZE["x"], end_y = cur_y + OPTION_RECT_SIZE["y"]}
+		cur_x = cur_x + OPTION_RECT_SIZE["x"]
+		cur_y = cur_y + OPTION_RECT_SIZE["y"]
+
+		currentRect = optionRects[option]
+		local color = if value == true then colors.green else colors.red end
+		Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
+		Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.background, BOTTOM_SCREEN)
+	end
+	Screen.flip()
+
+	Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
 end
 
 function takeScreenshot()
@@ -447,9 +470,7 @@ while true do
 
 	Screen.refresh()
 
-	if isMenuOpen then showMenu() else
-		if configs.showSplash then drawCFWLogo() end
-	end
+	if configs.showSplash then drawCFWLogo() end
 
 	Graphics.initBlend(TOP_SCREEN)
 	Graphics.fillRect(0, 800, 0, 240, colors.background)
@@ -466,8 +487,7 @@ while true do
 	
 	-- Menu open
 	if Controls.check(pad, KEY_SELECT) and not (Controls.check(oldpad, KEY_SELECT)) then
-		if isMenuOpen then isMenuOpen = false elseif
-			not isMenuOpen then isMenuOpen = true end
+		showMenu()
 	end
 
 	-- Cycling lcolors
