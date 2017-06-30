@@ -439,7 +439,8 @@ function showMenu()
 		cur_y = cur_y + OPTION_RECT_SIZE["y"]
 
 		currentRect = optionRects[option]
-		local color = if value == true then colors.green else colors.red end
+		local color = ""
+		if value == true then color = colors.green else color = colors.red end
 		Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
 		Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.background, BOTTOM_SCREEN)
 	end
@@ -449,7 +450,7 @@ function showMenu()
 	Screen.flip()
 
 	local pad = Controls.read()
-	
+
 	while ~Controls.check(pad, KEY_SELECT) then
 		pad = Controls.read()
 	end
