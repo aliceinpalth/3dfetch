@@ -425,7 +425,6 @@ function drawCFWLogo()
 end
 
 function showMenu()
-	animatePrint("topkek", 30)
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0, 320, 0, 240, colors.background)
 	Graphics.termBlend()
@@ -452,13 +451,12 @@ function showMenu()
 	Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
 
 	Screen.flip()
-
+	System.sleep(5)
 	local pad = Controls.read()
 
 	while not (Controls.check(pad, KEY_SELECT)) do 
 		pad = Controls.read()
 	end
-	animatePrint("bottom kek", 30)
 end
 
 function takeScreenshot()
