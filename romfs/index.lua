@@ -462,7 +462,7 @@ function showMenu()
 		if touchPos_x ~= 0 or touchPos_y ~= 0 then
 			for option,rect in pairs(configs) do
 				local currentRect = optionsRect[option]
-				animatePrint(touchPos_x, touchPos_y, currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], 20)
+				animatePrint(tostring(touchPos_x) ..  tostring(touchPos_y) .. tostring(currentRect["x"]) .. tostring(currentRect["end_x"]) .. tostring(currentRect["y"]) .. tostring(currentRect["end_y"]), 20)
 				if currentRect["x"] < touchPos_x and currentRect["end_x"] > touchPos_x and currentRect["y"] < touchPos_y and currentRect["end_y"] > touchPos_y then
 					
 					configs[option] = ~configs[option]
