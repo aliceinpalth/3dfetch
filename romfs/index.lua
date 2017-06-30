@@ -476,7 +476,7 @@ function showMenu()
 			end
 			Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
 			Screen.flip()
-			System.sleep(50)
+			System.sleep(5)
 		end
 	end
 	Graphics.initBlend(BOTTOM_SCREEN)
@@ -484,6 +484,7 @@ function showMenu()
 	Graphics.termBlend()
 	Screen.refresh()
 	Screen.flip()
+	writeConfig(configPath)
 end
 
 function takeScreenshot()
@@ -508,7 +509,13 @@ while true do
 
 	Screen.refresh()
 
-	if configs.showSplash then drawCFWLogo() end
+	if configs.showSplash then 
+		drawCFWLogo() 
+	else
+		Graphics.initBlend(BOTTOM_SCREEN)
+		Graphics.fillRect(0, 320, 0, 240, colors.background)
+		Graphics.termBlend()
+	end
 
 	Graphics.initBlend(TOP_SCREEN)
 	Graphics.fillRect(0, 800, 0, 240, colors.background)
