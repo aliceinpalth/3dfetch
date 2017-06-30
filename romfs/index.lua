@@ -451,7 +451,7 @@ function showMenu()
 
 	local pad = Controls.read()
 
-	while ~Controls.check(pad, KEY_SELECT) then
+	while ~Controls.check(pad, KEY_SELECT) do 
 		pad = Controls.read()
 	end
 end
