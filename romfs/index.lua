@@ -471,6 +471,7 @@ function showMenu()
 					local color = ""
 					if configs[option] == true then color = colors.green else color = colors.red end
 					Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
+					Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.black, BOTTOM_SCREEN)
 					Screen.flip()
 				end
 			end
