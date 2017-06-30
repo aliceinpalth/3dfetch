@@ -73,9 +73,14 @@ end
 function setConfigs(configFileContent)
 	local configStrings = {System.split(configFileContent, "\n")}
 	for key,value in pairs(configStrings) do
-		local configOption = {System.split(value, ":")}
-		writeLine("/debug", configOption[1].."!")
-		configs[string.sub(configOption[1], 1, string.find(configOption[1], "\x00", 1) - 1)] = "true" == configOption[2]
+		local configPair = {System.split(value, ":")}
+		local configOption = ""
+		if (string.find(configPair[1], "\x00") ~= nil) then
+			configOption = string.sub(configPair[1], 1, string.find(configPair[1], "\x00", 1) - 1)
+		else
+			configOption = configPair[1]
+		end
+		configs[configOption] = "true" == configPair[2]
 	end
 
 end
