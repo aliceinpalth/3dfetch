@@ -462,10 +462,9 @@ function showMenu()
 		if touchPos_x ~= 0 or touchPos_y ~= 0 then
 			for option,rect in pairs(configs) do
 				local currentRect = optionRects[option]
-				animatePrint(tostring(touchPos_x) ..  tostring(touchPos_y) .. tostring(currentRect["x"]) .. tostring(currentRect["end_x"]) .. tostring(currentRect["y"]) .. tostring(currentRect["end_y"]), 20)
 				if currentRect["x"] < touchPos_x and currentRect["end_x"] > touchPos_x and currentRect["y"] < touchPos_y and currentRect["end_y"] > touchPos_y then
 					
-					configs[option] = ~configs[option]
+					configs[option] = not configs[option]
 					Screen.refresh()
 					local color = ""
 					if value == true then color = colors.green else color = colors.red end
