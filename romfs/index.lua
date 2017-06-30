@@ -3,7 +3,10 @@ colors =
 {
 	background = Color.new(0, 0, 0),
 	right = Color.new(255, 255, 255),
-	left = Color.new(0, 255, 255)
+	left = Color.new(0, 255, 255),
+	red = Color.new(255, 0, 0),
+	green = Color.new(0, 255, 0),
+	black = Color.new(0, 0, 0)
 }
 
 -- Configuration option
@@ -47,6 +50,10 @@ logos =
 	yellow = Graphics.loadImage("romfs:/images/isabelle.png")
 }
 
+-- Rectangles!
+local OPTION_RECT_SIZE 	= {x = 300, y = 50}
+local MENU_RECT_SIZE	= {x = 60, y = 26}
+
 -- Append a line to a file
 function writeLine(filePath, fileString)
     local file = io.open(filePath, FCREATE)
@@ -88,7 +95,7 @@ end
 function writeConfig(filePath)
 	if System.doesFileExist(filePath) then System.deleteFile(filePath) end
 
-	for option,value in pairs(configs) do writeLine(filePath, option..":"..value.."\n") end
+	for option,value in pairs(configs) do writeLine(filePath, option..":"..tostring(value).."\n") end
 end
 
 -- Text output to top screen
@@ -392,7 +399,62 @@ function showMenu()
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0, 320, 0, 240, colors.background)
 	Graphics.termBlend()
-	Screen.debugPrint(20, 20, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
+	local cur_x = 20
+	local cur_y = 20
+	local optionRects = {}
+	Screen.refresh()
+
+	for option,value in pairs(configs) do
+		optionRects[option] = {val = value, x = cur_x, y = cur_y, end_x = cur_x + OPTION_RECT_SIZE["x"], end_y = cur_y + OPTION_RECT_SIZE["y"]}
+		cur_x = cur_x + OPTION_RECT_SIZE["x"] + 20 -- 20 is for padding
+		if (cur_x > 300) then 
+			cur_x = 20
+			cur_y = cur_y + OPTION_RECT_SIZE["y"] + 20
+		end
+
+		local currentRect = optionRects[option]
+		local color = ""
+		if value == true then color = colors.green else color = colors.red end
+		Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
+		Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.black, BOTTOM_SCREEN)
+	end
+
+	Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
+
+	Screen.flip()
+	System.sleep(5)
+	local pad = Controls.read()
+	local touchPos_x, touchPos_y = Controls.readTouch()
+
+	while not (Controls.check(pad, KEY_SELECT)) do 
+		pad = Controls.read()
+		touchPos_x, touchPos_y = Controls.readTouch()
+		if touchPos_x ~= 0 or touchPos_y ~= 0 then
+			Graphics.initBlend(BOTTOM_SCREEN)
+			Graphics.fillRect(0, 320, 0, 240, colors.background)
+			Graphics.termBlend()
+			Screen.refresh()
+			for option,rect in pairs(configs) do
+				local currentRect = optionRects[option]
+				if currentRect["x"] < touchPos_x and currentRect["end_x"] > touchPos_x and currentRect["y"] < touchPos_y and currentRect["end_y"] > touchPos_y then
+					configs[option] = not configs[option]
+				end
+				local color = ""
+				if configs[option] == true then color = colors.green else color = colors.red end
+				Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
+				Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.black, BOTTOM_SCREEN)
+			end
+			Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
+			Screen.flip()
+			System.sleep(5)
+		end
+	end
+	Graphics.initBlend(BOTTOM_SCREEN)
+	Graphics.fillRect(0, 320, 0, 240, colors.background)
+	Graphics.termBlend()
+	Screen.refresh()
+	Screen.flip()
+	writeConfig(configPath)
 end
 
 function takeScreenshot()
@@ -417,8 +479,12 @@ while true do
 
 	Screen.refresh()
 
-	if isMenuOpen then showMenu() else
-		if configs.showSplash then drawCFWLogo() end
+	if configs.showSplash then 
+		drawCFWLogo() 
+	else
+		Graphics.initBlend(BOTTOM_SCREEN)
+		Graphics.fillRect(0, 320, 0, 240, colors.background)
+		Graphics.termBlend()
 	end
 
 	Graphics.initBlend(TOP_SCREEN)
@@ -436,8 +502,7 @@ while true do
 	
 	-- Menu open
 	if Controls.check(pad, KEY_SELECT) and not (Controls.check(oldpad, KEY_SELECT)) then
-		if isMenuOpen then isMenuOpen = false elseif
-			not isMenuOpen then isMenuOpen = true end
+		showMenu()
 	end
 
 	-- Cycling lcolors
