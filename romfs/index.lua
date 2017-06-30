@@ -50,7 +50,7 @@ logos =
 -- Append a line to a file
 function writeLine(filePath, fileString)
     local file = io.open(filePath, FCREATE)
-    local content = io.read(file, 0, io.size(file))..debugString
+    local content = io.read(file, 0, io.size(file))..fileString
     io.write(file, 0, content, string.len(content))
     io.close(file)
 end
