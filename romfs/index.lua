@@ -95,7 +95,7 @@ end
 function writeConfig(filePath)
 	if System.doesFileExist(filePath) then System.deleteFile(filePath) end
 
-	for option,value in pairs(configs) do writeLine(filePath, option..":"..value.."\n") end
+	for option,value in pairs(configs) do writeLine(filePath, option..":"..tostring(value).."\n") end
 end
 
 -- Text output to top screen
