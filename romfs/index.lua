@@ -33,7 +33,6 @@ shouldRenderSS = false
 isMenuOpen = false
 
 -- Load default graphics
-bitmap = Screen.createImage(1, 1, colors.background)
 Graphics.init()
 
 -- Images
@@ -414,10 +413,10 @@ end
 
 function takeScreenshot()
 	local day_value, day, month, year = System.getDate()
-	local filepath = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
-	lastfp = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
-	photoNum = photoNum + 1
-	Screen.saveImage(bitmap, filepath .. ".jpg", false)
+	local hours, minutes, seconds = System.getTime()
+	local filepath = "/" .. "3dfetch_" .. day .. month  .. year .. "_" .. hours .. minutes .. seconds
+	lastfp = filepath
+	
 	System.takeScreenshot(filepath .. ".jpg", false)
 	shouldRenderSS = true
 end
@@ -510,7 +509,6 @@ while true do
 
 	-- Exit if HomeMenu calls APP_EXITING
 	if System.checkStatus() == APP_EXITING then
-		Screen.freeImage(bitmap)
 		System.exit()
 	end
 end
