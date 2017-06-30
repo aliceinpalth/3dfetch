@@ -6,11 +6,13 @@ colors =
 	left = Color.new(0, 255, 255)
 }
 
+-- Configuration option
 local configs =
 {
 	showAnimation = true
 }
 
+-- Configuration path
 configPath = "/3dfetch.conf"
 
 -- Indexes
@@ -22,9 +24,10 @@ colorIndex =
 }
 
 -- Global variables
+fetchVer = 1.10
 photoNum = 0
 oldPad = 0
-lastFP = 0
+lastfp = 0
 timer = Timer.new()
 shouldRenderSS = false
 isMenuOpen = false
@@ -43,7 +46,7 @@ logos =
 	yellow = Graphics.loadImage("romfs:/images/isabelle.png")
 }
 
--- for debugging purposes
+-- For debugging purposes
 function debugLog(debugString)
     local file = io.open("/debug", FCREATE)
     local content = io.read(file, 0, io.size(file))..debugString
@@ -205,7 +208,7 @@ function getBatteryStatusString()
 end
 
 function getFreeSpaceString()
-	return (math.floor(System.getFreeSpace()/1000000000)) .. "GB"
+	return (math.floor(System.getFreeSpace()/1e9)) .. "GB"
 end
 
 -- Improved CFW Function
@@ -389,8 +392,10 @@ function animateInvocation()
        	 
 	animatePrint(ps .. "3dfetch", 2)
 	animatePrint(ps .. "3dfetch_", 2)
+	animatePrint(ps .. "3dfetch", 2)
+	animatePrint(ps .. "3dfetch_", 2)
 
-	System.sleep(5)
+	System.sleep(4)
 end
 
 function drawCFWLogo()
@@ -404,7 +409,17 @@ function showMenu()
 	Graphics.initBlend(BOTTOM_SCREEN)
 	Graphics.fillRect(0, 320, 0, 240, colors.background)
 	Graphics.termBlend()
-	Screen.debugPrint(20, 20, "Menu Placeholder", colors.left, BOTTOM_SCREEN)
+	Screen.debugPrint(20, 20, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
+end
+
+function takeScreenshot()
+	local day_value, day, month, year = System.getDate()
+	local filepath = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
+	lastfp = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
+	photoNum = photoNum + 1
+	Screen.saveImage(bitmap, filepath .. ".jpg", false)
+	System.takeScreenshot(filepath .. ".jpg", false)
+	shouldRenderSS = true
 end
 
 -- Last function calls before main loop engages
@@ -431,13 +446,7 @@ while true do
 	printTopRightSide()
 
 	if Controls.check(pad, KEY_A) and not (Controls.check(oldpad,KEY_A)) then
-		day_value, day, month, year = System.getDate()
-		filepath = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
-		lastfp = "/" .. "3dfetch_" .. day .. "_" .. month .. "_" .. year .. "_" .. photoNum
-		photoNum = photoNum + 1
-		Screen.saveImage(bitmap, filepath .. ".jpg", false)
-		System.takeScreenshot(filepath .. ".jpg", false)
-		shouldRenderSS = true
+		takeScreenshot()
 	end
 	
 	-- Menu open
@@ -505,4 +514,3 @@ while true do
 		System.exit()
 	end
 end
-
