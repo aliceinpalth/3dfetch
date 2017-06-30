@@ -458,7 +458,7 @@ function showMenu()
 
 	while not (Controls.check(pad, KEY_SELECT)) do 
 		pad = Controls.read()
-
+		touchPos_x, touchPos_y = Controls.readTouch()
 		if touchPos_x ~= 0 or touchPos_y ~= 0 then
 			for option,rect in pairs(configs) do
 				local currentRect = optionsRect[option]
