@@ -9,7 +9,9 @@ colors =
 -- Configuration option
 local configs =
 {
-	showAnimation = true
+	showAnimation = true,
+	showSplash = true,
+	showCFW = true
 }
 
 -- Configuration path
@@ -45,15 +47,15 @@ logos =
 	yellow = Graphics.loadImage("romfs:/images/isabelle.png")
 }
 
--- For debugging purposes
-function debugLog(debugString)
-    local file = io.open("/debug", FCREATE)
-    local content = io.read(file, 0, io.size(file))..debugString
+-- Append a line to a file
+function writeLine(filePath, fileString)
+    local file = io.open(filePath, FCREATE)
+    local content = io.read(file, 0, io.size(file))..fileString
     io.write(file, 0, content, string.len(content))
     io.close(file)
 end
 
--- Config code written by Al, both those functions
+-- Config code written by Al, all of these functions
 function readConfig(filePath)
 	local fileContent = ""
 	
@@ -71,10 +73,22 @@ end
 function setConfigs(configFileContent)
 	local configStrings = {System.split(configFileContent, "\n")}
 	for key,value in pairs(configStrings) do
-		local configOption = {System.split(value, ":")}
-		configs[string.sub(configOption[1], 1, string.find(configOption[1], "\x00", 1) - 1)] = "true" == configOption[2]
+		local configPair = {System.split(value, ":")}
+		local configOption = ""
+		if (string.find(configPair[1], "\x00") ~= nil) then
+			configOption = string.sub(configPair[1], 1, string.find(configPair[1], "\x00", 1) - 1)
+		else
+			configOption = configPair[1]
+		end
+		configs[configOption] = "true" == configPair[2]
 	end
 
+end
+
+function writeConfig(filePath)
+	if System.doesFileExist(filePath) then System.deleteFile(filePath) end
+
+	for option,value in pairs(configs) do writeLine(filePath, option..":"..value.."\n") end
 end
 
 -- Text output to top screen
@@ -83,7 +97,7 @@ function printTopLeftSide()
 
 	Screen.debugPrint(xoffset, 10, string.lower(getUsernameString()) .. "@" .. string.lower(getCPUString(1)), colors.left, TOP_SCREEN)
 	Screen.debugPrint(xoffset, 25, "-----------", colors.left, TOP_SCREEN)
-	Screen.debugPrint(xoffset, 55, "Firmware:", colors.left, TOP_SCREEN)
+	if configs.showCFW then Screen.debugPrint(xoffset, 55, "Firmware:", colors.left, TOP_SCREEN) end
 	Screen.debugPrint(xoffset, 70, "Resolution:", colors.left, TOP_SCREEN)
 	Screen.debugPrint(xoffset, 85, "Kernel:", colors.left, TOP_SCREEN)
 	Screen.debugPrint(xoffset, 100, "CPU:", colors.left, TOP_SCREEN)
@@ -96,7 +110,7 @@ end
 function printTopRightSide()
 	local xoffset = 160
 
-	Screen.debugPrint(xoffset, 55, getCFWString(), colors.right, TOP_SCREEN)
+	if configs.showCFW then Screen.debugPrint(xoffset, 55, getCFWString(), colors.right, TOP_SCREEN) end
 	Screen.debugPrint(xoffset, 70, "800x240, 320x240", colors.right, TOP_SCREEN)
 	Screen.debugPrint(xoffset, 85, getKernelVersionString(), colors.right, TOP_SCREEN)
 	Screen.debugPrint(xoffset, 100, getCPUString(2), colors.right, TOP_SCREEN)
@@ -433,7 +447,9 @@ while true do
 
 	Screen.refresh()
 
-	if isMenuOpen then showMenu() else drawCFWLogo() end
+	if isMenuOpen then showMenu() else
+		if configs.showSplash then drawCFWLogo() end
+	end
 
 	Graphics.initBlend(TOP_SCREEN)
 	Graphics.fillRect(0, 800, 0, 240, colors.background)
