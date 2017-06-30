@@ -443,9 +443,16 @@ function showMenu()
 		Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
 		Screen.debugPrint(currentRect["x"], (currentRect["y"] + currentRect["end_y"]) / 2, option, colors.background, BOTTOM_SCREEN)
 	end
-	Screen.flip()
 
 	Screen.debugPrint(8, 217, "3dfetch Version: " .. tostring(fetchVer), colors.left, BOTTOM_SCREEN)
+
+	Screen.flip()
+
+	local pad = Controls.read()
+	
+	while ~Controls.check(pad, KEY_SELECT) then
+		pad = Controls.read()
+	end
 end
 
 function takeScreenshot()
