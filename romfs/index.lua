@@ -463,11 +463,13 @@ function showMenu()
 			for option,rect in pairs(configs) do
 				local currentRect = optionRects[option]
 				if currentRect["x"] < touchPos_x and currentRect["end_x"] > touchPos_x and currentRect["y"] < touchPos_y and currentRect["end_y"] > touchPos_y then
-					
+					Graphics.initBlend(BOTTOM_SCREEN)
+					Graphics.fillRect(0, 320, 0, 240, colors.background)
+					Graphics.termBlend()
 					configs[option] = not configs[option]
 					Screen.refresh()
 					local color = ""
-					if value == true then color = colors.green else color = colors.red end
+					if configs[option] == true then color = colors.green else color = colors.red end
 					Screen.fillRect(currentRect["x"], currentRect["end_x"], currentRect["y"], currentRect["end_y"], color, BOTTOM_SCREEN)
 					Screen.flip()
 				end
