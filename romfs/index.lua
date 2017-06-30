@@ -50,7 +50,7 @@ logos =
 }
 
 -- Rectangles!
-local OPTION_RECT_SIZE 	= {x = 300, y = 66}
+local OPTION_RECT_SIZE 	= {x = 300, y = 50}
 local MENU_RECT_SIZE	= {x = 60, y = 26}
 
 -- Append a line to a file
