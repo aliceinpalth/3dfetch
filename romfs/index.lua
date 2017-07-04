@@ -330,7 +330,7 @@ function updateColors()
 		colors.background = Color.new(0,0,0) -- Black
 	elseif colorIndex.background == 1 then
 		colors.background = Color.new(0,98,137) -- Dark blue
-	elseif colorIndex.backrgound == 2 then
+	elseif colorIndex.background == 2 then
 		colors.background = Color.new(255,255,255) -- White
 	elseif colorIndex.background == 3 then
 		colors.background = Color.new(0,175,96) -- Dark green
