@@ -17,7 +17,7 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 3dfetch running on a new 3DS with Luma CFW.
 
 # Where to get it
-Check the [releases page](https://github.com/yyualice/3dfetch/releases). Or get it on TitleDB within FBI.
+Check the [releases page](https://github.com/yyualice/3dfetch/releases) for a CIA file / QR code. Or get it on TitleDB within FBI.
 
 # Optional configuration
 You are able to modify the way 3dfetch works by creating a file at the root of your SD card called `3dfetch.conf`.
