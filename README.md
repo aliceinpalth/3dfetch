@@ -14,7 +14,7 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 # Screenshots
 ![3dfetch running a new 3DS](http://i.imgur.com/qhMDawH.png)
 
-3dfetch running on a new 3DS running Luma CFW.
+3dfetch running on a new 3DS with Luma CFW.
 
 # Where to get it
 Check the [releases page](https://github.com/yyualice/3dfetch/releases). Or get it on TitleDB within FBI.
