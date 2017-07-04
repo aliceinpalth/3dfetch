@@ -12,16 +12,16 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 - Use in tandem with [imgurup-3ds](https://github.com/Pirater12/imgurup-3ds) for an easy sharing experience
 
 # Screenshots
-![3dfetch running an old 3DS XL](http://i.imgur.com/8wUNZoS.png)
+![3dfetch running a new 3DS](http://i.imgur.com/qhMDawH.png)
 
-3dfetch running an old 3DS XL with default colors.
+3dfetch running on a new 3DS running Luma CFW.
 
 # Where to get it
 Check the [releases page](https://github.com/yyualice/3dfetch/releases). Or get it on TitleDB within FBI.
 
 # Optional configuration
-You are able to modify the way 3dfetch works by creating a file at the root of your SD card called `3dfetch.conf`
-So far, the following options are available:
+You are able to modify the way 3dfetch works by creating a file at the root of your SD card called `3dfetch.conf`.
+At present, the following options are available:
 
 `showAnimation:true | false` to enable/disable the little shell animation on startup.
 
@@ -30,21 +30,23 @@ So far, the following options are available:
 `showCFW:true | false` to enable/disable CFW detection
 
 # Reporting issues
-Is your CFW not being recognized properly? The amount of free space is wrong? Or maybe you just got a weird error.
+Is your CFW not being recognized properly? Is the amount of free space reported incorrectly? Or maybe you came across an error.
 
-File an issue, just do it, we'll fix it. Don't forget to add your CFW, what version you are on and which 3dfetch version/commit you were using.
+Create an issue on GitHub. Don't forget to add your CFW, what version you are on and which 3dfetch version/commit you were using.
 
 # Building from source
-- You will need [makerom](https://github.com/profi200/Project_CTR/releases) in your `$PATH` to create the CIA.
-- You will need [3ds-tool](https://github.com/dnasdw/3dstool/releases) in your `$PATH` to recompile the ROM filesystem.
-- And you will also need the [bannertool](https://github.com/Steveice10/bannertool) to create the banner and icon files.
+## Requirements
+- [makerom](https://github.com/profi200/Project_CTR/releases) to create the CIA.
+- [3ds-tool](https://github.com/dnasdw/3dstool/releases) to recompile the ROM filesystem.
+- [bannertool](https://github.com/Steveice10/bannertool) to create the banner and icon files.
+- A fork of lpp-3ds found [here](https://github.com/daedreth/lpp-3ds) which includes expanded functionality. The compiled binary (`lpp-3ds.elf`) is included in the repository, we strongly suggest against attempts to compile it yourself, if such necessity arises, visit the forks repository for instructions.
 
-- This software uses a fork of lpp-3ds found [here](https://github.com/daedreth/lpp-3ds) which expanded functionality.
-The compiled binary (lpp-3ds.elf) is already part of the repository, we strongly suggest against attempts to compile it yourself,
-if such necessity arises, visit the forks repository for instructions.
+## Compiling
+### CIA
+Run `make` to build an installable CIA-file.
 
-Once you have all the requirements, simply run `make` to build an installable CIA-file.
+### 3dsx
+If you wish to use 3dfetch inside the Homebrew Launcher and thus require a 3dsx file, run `make 3dfetch.3dsx` instead and merge the `/3ds` folder with the one found on your SD card.
 
-If you wish to use 3dfetch inside your Homebrew Launcher and thus require a 3dsx file, run `make 3dfetch.3dsx` instead and merge the `/3ds` folder with the one found on your SD card.
-
-If you would like to have it be sent via network to your console, open up the Homebrew Launcher, press `Y` and run `make 3dsx` instead.
+### Network-sent 3dsx
+If you would like to have 3dfetch be sent via network to your console, open up the Homebrew Launcher, press `Y` and run `make 3dsx` instead.
