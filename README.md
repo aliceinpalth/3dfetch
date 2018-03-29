@@ -12,16 +12,15 @@ Similar to Linux's screenfetch script, but unsigned and executed on a Nintendo 3
 - Use in tandem with [imgurup-3ds](https://github.com/Pirater12/imgurup-3ds) for an easy sharing experience
 
 # Screenshots
-![3dfetch running a new 3DS](http://i.imgur.com/qhMDawH.png)
+![3dfetch running a New 3DS](http://i.imgur.com/qhMDawH.png)
 
-3dfetch running on a new 3DS with Luma CFW.
+3dfetch running on a New 3DS with Luma CFW.
 
 # Where to get it
 Check the [releases page](https://github.com/yyualice/3dfetch/releases) for a CIA file / QR code. Or get it on TitleDB within FBI.
 
 # Optional configuration
-You are able to modify the way 3dfetch works by creating a file at the root of your SD card called `3dfetch.conf`.
-At present, the following options are available:
+3dfetch can optionally be configured by creating a file at the root of your SD card called `3dfetch.conf`. At present, the following options are available:
 
 `showAnimation:true | false` to enable/disable the little shell animation on startup.
 
@@ -36,9 +35,9 @@ Create an issue on GitHub. Don't forget to add your CFW, what version you are on
 
 # Building from source
 ## Requirements
-- [makerom](https://github.com/profi200/Project_CTR/releases) to create the CIA.
-- [3ds-tool](https://github.com/dnasdw/3dstool/releases) to recompile the ROM filesystem.
-- [bannertool](https://github.com/Steveice10/bannertool) to create the banner and icon files.
+- [`makerom`](https://github.com/profi200/Project_CTR/releases) to create the CIA.
+- [`3ds-tool`](https://github.com/dnasdw/3dstool/releases) to recompile the ROM filesystem.
+- [`bannertool`](https://github.com/Steveice10/bannertool) to create the banner and icon files.
 - A fork of lpp-3ds found [here](https://github.com/daedreth/lpp-3ds) which includes expanded functionality. The compiled binary (`lpp-3ds.elf`) is included in the repository, we strongly suggest against attempts to compile it yourself, if such necessity arises, visit the forks repository for instructions.
 
 ## Compiling
